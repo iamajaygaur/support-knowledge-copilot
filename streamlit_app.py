@@ -264,6 +264,45 @@ html, body, [class*="css"] {
   line-height: 1.4;
 }
 
+.skc-side-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.35rem 0.15rem 1rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.skc-side-brand .skc-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.skc-side-brand-copy {
+  min-width: 0;
+}
+
+.skc-side-brand-name {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Source Serif 4", serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.skc-side-brand-tag {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 div[data-testid="stMetric"] {
   background: #fff;
   border: 1px solid var(--line);
@@ -456,6 +495,18 @@ st.set_page_config(
 st.markdown(APP_CSS, unsafe_allow_html=True)
 
 with st.sidebar:
+    st.markdown(
+        """
+        <div class="skc-side-brand">
+          <div class="skc-mark">SK</div>
+          <div class="skc-side-brand-copy">
+            <p class="skc-side-brand-name">Support Knowledge Copilot</p>
+            <p class="skc-side-brand-tag">Grounded · Verified</p>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
     st.markdown("### Workspace")
     st.markdown(
         """
