@@ -31,7 +31,9 @@ def get_genai_client() -> genai.Client:
     if _looks_like_placeholder(key):
         raise RuntimeError(
             "GOOGLE_API_KEY is missing or still a placeholder. "
-            "Edit .env and set a key from https://aistudio.google.com/apikey"
+            "Set it in .env locally, or in Streamlit Cloud → App settings → Secrets "
+            '(e.g. GOOGLE_API_KEY = "your-key") / Vercel env vars. '
+            "Get a key from https://aistudio.google.com/apikey"
         )
     return genai.Client(api_key=key)
 

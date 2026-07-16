@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import os
 import sys
 from pathlib import Path
 
@@ -12,6 +13,21 @@ if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
 import streamlit as st
+
+
+def _apply_streamlit_secrets() -> None:
+    """Copy Streamlit Cloud secrets into env for pydantic Settings / local .env parity."""
+    try:
+        secrets = st.secrets
+    except Exception:  # noqa: BLE001 — no secrets.toml locally is fine
+        return
+    for key, value in secrets.items():
+        if isinstance(value, dict):
+            continue
+        os.environ.setdefault(str(key), str(value))
+
+
+_apply_streamlit_secrets()
 
 from knowledge_copilot.models import AskResponse, CitationVerdict
 from knowledge_copilot.service import ask

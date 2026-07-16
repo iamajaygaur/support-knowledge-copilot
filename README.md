@@ -84,7 +84,7 @@ streamlit run streamlit_app.py
 
 The sidebar includes example questions and an optional **hybrid vs dense** comparison view.
 
-> **Deploy note:** Vercel hosts the **FastAPI API** (`/ask`, `/health`), not the Streamlit UI. Run Streamlit locally for the dashboard.
+> **Deploy note:** Vercel hosts the **FastAPI API** (`/ask`, `/health`), not the Streamlit UI. For the hosted Streamlit dashboard, set secrets under **App settings → Secrets** (see below).
 
 ### 6. Run evaluation
 
@@ -155,6 +155,18 @@ eval.py                       CLI evaluation
 streamlit_app.py              Streamlit UI
 ```
 
+## Deploying on Streamlit Cloud (dashboard)
+
+1. Deploy from GitHub with main file `streamlit_app.py`
+2. In **App settings → Secrets**, add:
+
+```toml
+GOOGLE_API_KEY = "your-google-ai-studio-key"
+```
+
+3. Reboot the app after saving secrets
+4. Indexes (`data/qdrant`, `data/bm25`) are gitignored — either run ingest in a one-off Cloud session with the key set, or keep using the app locally after `python ingest.py --source docs/ --rebuild`
+
 ## Deploying on Vercel (API only)
 
 Vercel deploys the FastAPI app from root **`app.py`** (which imports `knowledge_copilot.api.main:app`).
@@ -168,6 +180,7 @@ Vercel deploys the FastAPI app from root **`app.py`** (which imports `knowledge_
    - `POST /ask` — ask questions
 
 If you still see a generic Vercel **404: NOT_FOUND**, the deploy likely used an old commit — trigger **Redeploy** from the latest `main` (`c6055d9` or newer).
+
 ## Interview talking points
 
 1. **Shared chunk IDs** — dense and sparse indexes address different failure modes but must point at the same evidence unit for fusion and citation checks.
