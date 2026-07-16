@@ -293,6 +293,53 @@ div[data-testid="stMetric"] {
   border-color: #9ad9cf !important;
   color: var(--accent) !important;
 }
+
+.skc-search-wrap {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.92);
+  padding: 1rem 1.1rem 0.35rem;
+  margin-bottom: 0.35rem;
+  box-shadow: 0 10px 28px rgba(20, 33, 43, 0.04);
+}
+
+.skc-search-wrap h3 {
+  margin: 0 0 0.2rem;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.skc-search-wrap p {
+  margin: 0 0 0.15rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+div[data-testid="stTextInput"] label p {
+  font-weight: 700 !important;
+  color: var(--ink) !important;
+  font-size: 1.02rem !important;
+}
+
+div[data-testid="stTextInput"] input {
+  border: 1.5px solid var(--line) !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  min-height: 3.15rem !important;
+  font-size: 1.02rem !important;
+  padding-left: 0.95rem !important;
+  box-shadow: inset 0 1px 2px rgba(20, 33, 43, 0.03);
+}
+
+div[data-testid="stTextInput"] input:focus {
+  border-color: #7bc4ba !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14) !important;
+}
+
+div[data-testid="stTextInput"] input::placeholder {
+  color: #8a9aa5 !important;
+}
 </style>
 """
 
@@ -458,29 +505,24 @@ with st.sidebar:
 
 render_header(strategy=strategy, use_rerank=use_rerank, compare=compare_strategies)
 
-st.markdown(
-    """
-    <div class="skc-panel">
-      <h3>Ask a support question</h3>
-      <p>Answers stay grounded in the sample corpus (auth, MFA, webhooks, policies). Out-of-scope topics should refuse.</p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+if "question" not in st.session_state:
+    st.session_state["question"] = ""
 
-question = st.text_input(
-    "Support question",
-    value=st.session_state.get("question", ""),
-    placeholder="e.g. What does HOOK-5008 mean and how should the customer fix it?",
-    label_visibility="collapsed",
-)
-ask_col, tip_col = st.columns([1, 2.4])
-with ask_col:
-    run = st.button("Ask Copilot", type="primary", use_container_width=True)
-with tip_col:
-    st.caption(
-        "Tip: start with an error code or policy question. Use Compare mode to show dense vs hybrid live."
+q_col, btn_col = st.columns([4.2, 1])
+with q_col:
+    question = st.text_input(
+        "Ask a support question",
+        placeholder="Type to search… e.g. What does HOOK-5008 mean?",
+        key="question",
     )
+with btn_col:
+    st.markdown("<div style='height:1.7rem'></div>", unsafe_allow_html=True)
+    run = st.button("Ask", type="primary", use_container_width=True)
+
+st.caption(
+    "Answers stay grounded in the sample corpus (auth, MFA, webhooks, policies). "
+    "Out-of-scope topics should refuse. Tip: try Compare mode for hybrid vs dense."
+)
 
 if run and question.strip():
     with st.spinner("Retrieving evidence, drafting an answer, and verifying citations…"):
