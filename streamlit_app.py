@@ -83,7 +83,9 @@ span[data-testid="stIconMaterial"],
 .block-container {
   padding-top: 1.25rem !important;
   padding-bottom: 2rem !important;
-  max-width: 1100px;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  max-width: 100% !important;
 }
 
 .stApp {
