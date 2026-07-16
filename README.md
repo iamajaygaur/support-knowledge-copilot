@@ -165,7 +165,7 @@ GOOGLE_API_KEY = "your-google-ai-studio-key"
 ```
 
 3. Reboot the app after saving secrets
-4. Indexes (`data/qdrant`, `data/bm25`) are gitignored — either run ingest in a one-off Cloud session with the key set, or keep using the app locally after `python ingest.py --source docs/ --rebuild`
+4. Sample indexes in `data/qdrant` and `data/bm25` ship with the repo so Ask works without a Cloud ingest. Rebuild locally anytime with `python ingest.py --source docs/ --rebuild`
 
 ## Deploying on Vercel (API only)
 

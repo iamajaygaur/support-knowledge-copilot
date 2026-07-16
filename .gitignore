@@ -9,7 +9,8 @@ __pycache__/
 .ruff_cache/
 .DS_Store
 data/chunks/
-data/bm25/
-data/qdrant/
+# Commit sample BM25 + Qdrant indexes for Streamlit Cloud demos.
+# Only ignore the lock file so Cloud can open the embedded store.
+data/qdrant/.lock
 *.log
 .streamlit/secrets.toml
