@@ -84,7 +84,7 @@ streamlit run streamlit_app.py
 
 The sidebar includes example questions and an optional **hybrid vs dense** comparison view.
 
-> **Deploy note:** Vercel hosts the **FastAPI API** (`/ask`, `/health`), not the Streamlit UI. For the hosted Streamlit dashboard, set secrets under **App settings → Secrets** (see below).
+> **Deploy note:** The hosted app is on **Streamlit Cloud**. Set `GOOGLE_API_KEY` under **App settings → Secrets** (see below).
 
 ### 6. Run evaluation
 
@@ -166,20 +166,6 @@ GOOGLE_API_KEY = "your-google-ai-studio-key"
 
 3. Reboot the app after saving secrets
 4. Sample indexes in `data/qdrant` and `data/bm25` ship with the repo so Ask works without a Cloud ingest. Rebuild locally anytime with `python ingest.py --source docs/ --rebuild`
-
-## Deploying on Vercel (API only)
-
-Vercel deploys the FastAPI app from root **`app.py`** (which imports `knowledge_copilot.api.main:app`).
-
-1. Push to GitHub and import the repo in Vercel (or Redeploy after the latest push)
-2. Set environment variable **`GOOGLE_API_KEY`** in Vercel → Settings → Environment Variables
-3. Open these URLs after deploy succeeds:
-   - `/` — API info
-   - `/health` — health check
-   - `/docs` — interactive Swagger UI
-   - `POST /ask` — ask questions
-
-If you still see a generic Vercel **404: NOT_FOUND**, the deploy likely used an old commit — trigger **Redeploy** from the latest `main` (`c6055d9` or newer).
 
 ## Interview talking points
 
