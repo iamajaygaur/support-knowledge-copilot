@@ -58,13 +58,32 @@ APP_CSS = """
   --font: "Figtree", "Segoe UI", sans-serif;
 }
 
-html, body, .stApp, [class*="css"],
-.stMarkdown, .stText, .stCaption, label, button, input, textarea, select,
-[data-testid="stSidebar"], [data-testid="stSidebar"] *,
-[data-testid="stMetric"], [data-testid="stMetric"] *,
-[data-baseweb="select"], [data-baseweb="tab"],
-h1, h2, h3, h4, h5, h6, p, span, div {
+/* Apply Figtree to app chrome — never to Material icon ligatures */
+html, body, .stApp, .stMarkdown, .stCaption, .stTextInput, .stSelectbox,
+.stCheckbox, .stButton > button, .stTabs, [data-testid="stMetricValue"],
+[data-testid="stMetricLabel"], [data-testid="stSidebar"] .stMarkdown,
+label p, input, textarea {
   font-family: var(--font) !important;
+}
+
+/* Keep Streamlit / Material icons rendering as glyphs, not raw names */
+[data-testid="stIconMaterial"],
+span[data-testid="stIconMaterial"],
+.material-icons,
+.material-symbols-rounded,
+.material-symbols-outlined {
+  font-family: "Material Symbols Rounded", "Material Symbols Outlined",
+    "Material Icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+.block-container {
+  padding-top: 1.25rem !important;
+  padding-bottom: 2rem !important;
+  max-width: 1100px;
 }
 
 .stApp {
@@ -76,6 +95,10 @@ h1, h2, h3, h4, h5, h6, p, span, div {
 
 [data-testid="stHeader"] {
   background: transparent;
+}
+
+[data-testid="stToolbar"] {
+  right: 1rem;
 }
 
 [data-testid="stSidebar"] {
@@ -98,7 +121,7 @@ h1, h2, h3, h4, h5, h6, p, span, div {
     linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.78) 100%);
   box-shadow: 0 18px 40px rgba(20, 33, 43, 0.06);
   padding: 1.35rem 1.5rem 1.2rem;
-  margin-bottom: 1.1rem;
+  margin: 0.25rem 0 1.1rem;
 }
 
 .skc-hero::before {
@@ -226,28 +249,6 @@ h1, h2, h3, h4, h5, h6, p, span, div {
   font-weight: 700;
 }
 
-.skc-panel {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255,255,255,0.88);
-  padding: 1rem 1.1rem 0.85rem;
-  margin-bottom: 0.85rem;
-  box-shadow: 0 10px 28px rgba(20, 33, 43, 0.04);
-}
-
-.skc-panel h3 {
-  margin: 0 0 0.35rem;
-  color: var(--ink);
-  font-size: 1.02rem;
-  font-weight: 700;
-}
-
-.skc-panel p {
-  margin: 0 0 0.75rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 .skc-side-card {
   border: 1px solid var(--line);
   border-radius: 14px;
@@ -316,11 +317,8 @@ div[data-testid="stMetric"] {
   padding: 0.65rem 0.8rem;
 }
 
-.stButton > button {
-  font-family: var(--font) !important;
-}
-
-.stButton > button[kind="primary"] {
+.stButton > button[kind="primary"],
+.stFormSubmitButton > button[kind="primary"] {
   background: linear-gradient(135deg, #0f766e, #155e75) !important;
   border: none !important;
   box-shadow: 0 8px 18px rgba(15, 118, 110, 0.25);
@@ -335,35 +333,12 @@ div[data-testid="stMetric"] {
   background: rgba(255,255,255,0.7);
   border: 1px solid var(--line);
   padding: 0.35rem 0.9rem;
-  font-family: var(--font) !important;
 }
 
 .stTabs [aria-selected="true"] {
   background: var(--accent-soft) !important;
   border-color: #9ad9cf !important;
   color: var(--accent) !important;
-}
-
-.skc-search-wrap {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: rgba(255,255,255,0.92);
-  padding: 1rem 1.1rem 0.35rem;
-  margin-bottom: 0.35rem;
-  box-shadow: 0 10px 28px rgba(20, 33, 43, 0.04);
-}
-
-.skc-search-wrap h3 {
-  margin: 0 0 0.2rem;
-  color: var(--ink);
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-.skc-search-wrap p {
-  margin: 0 0 0.15rem;
-  color: var(--muted);
-  font-size: 0.88rem;
 }
 
 div[data-testid="stTextInput"] label p {
@@ -573,16 +548,13 @@ render_header(strategy=strategy, use_rerank=use_rerank, compare=compare_strategi
 if "question" not in st.session_state:
     st.session_state["question"] = ""
 
-q_col, btn_col = st.columns([4.2, 1])
-with q_col:
+with st.form("ask_form", clear_on_submit=False, border=False):
     question = st.text_input(
         "Ask a support question",
         placeholder="Type to search… e.g. What does HOOK-5008 mean?",
         key="question",
     )
-with btn_col:
-    st.markdown("<div style='height:1.7rem'></div>", unsafe_allow_html=True)
-    run = st.button("Ask", type="primary", use_container_width=True)
+    run = st.form_submit_button("Ask", type="primary", use_container_width=False)
 
 st.caption(
     "Answers stay grounded in the sample corpus (auth, MFA, webhooks, policies). "
