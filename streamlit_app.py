@@ -81,7 +81,7 @@ span[data-testid="stIconMaterial"],
 }
 
 .block-container {
-  padding-top: 1.25rem !important;
+  padding-top: 2.75rem !important;
   padding-bottom: 2rem !important;
   padding-left: 2rem !important;
   padding-right: 2rem !important;
