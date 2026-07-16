@@ -293,6 +293,27 @@ div[data-testid="stMetric"] {
   border-color: #9ad9cf !important;
   color: var(--accent) !important;
 }
+
+/* Search / ask field */
+div[data-testid="stTextInput"] label p {
+  font-weight: 700 !important;
+  color: var(--ink) !important;
+  font-size: 1.02rem !important;
+}
+
+div[data-testid="stTextInput"] input {
+  border: 1px solid var(--line) !important;
+  border-radius: 14px !important;
+  background: #fff !important;
+  min-height: 3rem !important;
+  font-size: 1rem !important;
+  box-shadow: 0 8px 20px rgba(20, 33, 43, 0.04);
+}
+
+div[data-testid="stTextInput"] input:focus {
+  border-color: #7bc4ba !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15) !important;
+}
 </style>
 """
 
@@ -458,28 +479,21 @@ with st.sidebar:
 
 render_header(strategy=strategy, use_rerank=use_rerank, compare=compare_strategies)
 
-st.markdown(
-    """
-    <div class="skc-panel">
-      <h3>Ask a support question</h3>
-      <p>Answers stay grounded in the sample corpus (auth, MFA, webhooks, policies). Out-of-scope topics should refuse.</p>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+if "question" not in st.session_state:
+    st.session_state["question"] = ""
 
 question = st.text_input(
     "Support question",
-    value=st.session_state.get("question", ""),
-    placeholder="e.g. What does HOOK-5008 mean and how should the customer fix it?",
-    label_visibility="collapsed",
+    placeholder="Type a question… e.g. What does HOOK-5008 mean?",
+    key="question",
 )
 ask_col, tip_col = st.columns([1, 2.4])
 with ask_col:
-    run = st.button("Ask Copilot", type="primary", use_container_width=True)
+    run = st.button("Ask", type="primary", use_container_width=True)
 with tip_col:
     st.caption(
-        "Tip: start with an error code or policy question. Use Compare mode to show dense vs hybrid live."
+        "Answers stay grounded in the sample corpus (auth, MFA, webhooks, policies). "
+        "Out-of-scope topics should refuse."
     )
 
 if run and question.strip():
