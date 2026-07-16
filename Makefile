@@ -14,7 +14,7 @@ api:
 	. .venv/bin/activate && uvicorn knowledge_copilot.api.main:app --reload --app-dir src
 
 ui:
-	. .venv/bin/activate && streamlit run app.py
+	. .venv/bin/activate && streamlit run streamlit_app.py
 
 eval:
 	. .venv/bin/activate && python eval.py --strategy hybrid --no-rerank --limit 12

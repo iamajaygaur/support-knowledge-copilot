@@ -7,7 +7,7 @@ Before live demos:
 ```bash
 source .venv/bin/activate
 python ingest.py --source docs/ --rebuild
-streamlit run app.py
+streamlit run streamlit_app.py
 # or: python ask.py "What does AUTH-4291 mean?"
 # or: make ui / make eval
 ```

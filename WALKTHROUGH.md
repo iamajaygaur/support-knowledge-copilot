@@ -8,7 +8,7 @@ Use this while screen-recording for your portfolio.
 cd ~/support-knowledge-copilot
 source .venv/bin/activate
 python ingest.py --source docs/ --rebuild   # only if index is stale
-streamlit run app.py
+streamlit run streamlit_app.py
 ```
 
 In the UI:

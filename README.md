@@ -78,11 +78,13 @@ curl -s http://127.0.0.1:8000/ask \
 **Dashboard**
 
 ```bash
-streamlit run app.py
+streamlit run streamlit_app.py
 # or: make ui
 ```
 
 The sidebar includes example questions and an optional **hybrid vs dense** comparison view.
+
+> **Deploy note:** Vercel hosts the **FastAPI API** (`/ask`, `/health`), not the Streamlit UI. Run Streamlit locally for the dashboard.
 
 ### 6. Run evaluation
 
@@ -150,9 +152,27 @@ data/eval/golden_qa.jsonl     Hand-written eval questions
 src/knowledge_copilot/        Library code
 ingest.py                     CLI ingestion
 eval.py                       CLI evaluation
-app.py                        Streamlit UI
+streamlit_app.py              Streamlit UI
 ```
 
+## Deploying on Vercel (API only)
+
+Vercel deploys the FastAPI app at `src.knowledge_copilot.api.main:app` (configured in `pyproject.toml`).
+
+1. Push to GitHub and import the repo in Vercel
+2. Set environment variable **`GOOGLE_API_KEY`** in Vercel → Settings → Environment Variables
+3. Redeploy
+
+After deploy, test:
+
+```bash
+curl https://YOUR-DEPLOYMENT.vercel.app/health
+curl -s https://YOUR-DEPLOYMENT.vercel.app/ask \
+  -H 'Content-Type: application/json' \
+  -d '{"question":"What does AUTH-4291 mean?","strategy":"hybrid","use_rerank":false}'
+```
+
+**Limits:** embedded Qdrant + BM25 indexes live on the local disk and are not ideal for serverless. For a reliable cloud demo, keep Streamlit + indexes local, or point `QDRANT_PATH=` empty and use a hosted Qdrant URL. The Streamlit UI (`streamlit_app.py`) is for local demos, not Vercel.
 ## Interview talking points
 
 1. **Shared chunk IDs** — dense and sparse indexes address different failure modes but must point at the same evidence unit for fusion and citation checks.

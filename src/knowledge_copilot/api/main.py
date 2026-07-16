@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from knowledge_copilot.config import get_settings
@@ -14,11 +15,29 @@ app = FastAPI(
     version="0.1.0",
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 class IngestRequest(BaseModel):
     source: str | None = None
     rebuild: bool = True
     strategy: str = Field(default="heading", pattern="^(heading|fixed)$")
+
+
+@app.get("/")
+def root() -> dict:
+    return {
+        "name": "Support Knowledge Copilot",
+        "docs": "/docs",
+        "health": "/health",
+        "ask": "POST /ask",
+    }
 
 
 @app.get("/health")
