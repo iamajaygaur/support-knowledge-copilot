@@ -35,7 +35,7 @@ dev = ["pytest>=8.3.0"]
 where = ["src"]
 
 [tool.vercel]
-entrypoint = "src.knowledge_copilot.api.main:app"
+entrypoint = "app.py"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
