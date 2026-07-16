@@ -1,3 +1,6 @@
+# Install the local package (src/knowledge_copilot) for Streamlit Cloud / bare venvs
+-e .
+
 fastapi>=0.115.0
 uvicorn[standard]>=0.32.0
 google-genai>=1.0.0

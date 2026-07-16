@@ -3,6 +3,14 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Ensure `src/` is importable when the package isn't installed (e.g. Streamlit Cloud)
+_SRC = Path(__file__).resolve().parent / "src"
+if str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
 import streamlit as st
 
 from knowledge_copilot.models import AskResponse, CitationVerdict
