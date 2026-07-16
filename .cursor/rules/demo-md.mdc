@@ -1,0 +1,15 @@
+---
+description: Demo.md must always include questions and answers
+globs: Demo.md
+alwaysApply: true
+---
+
+# Demo.md format
+
+Whenever you create, update, or rebuild `Demo.md`:
+
+- Always include **both the question and the answer** for every item
+- Use a clear, study-friendly format (question, expected answer, source docs when useful)
+- Never leave questions without answers
+- Prefer plain language with key facts/numbers easy to scan
+- Keep no-answer cases explicit (say the docs do not contain it)

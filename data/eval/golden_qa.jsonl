@@ -1,0 +1,55 @@
+{"id": "q001", "question": "How do employees reset their password?", "category": "simple_lookup", "relevant_sources": ["password-reset.md"], "expect_no_answer": false}
+{"id": "q002", "question": "What does error AUTH-4291 mean and how do I fix it?", "category": "simple_lookup", "relevant_sources": ["auth-errors.md", "2026-04-release.md"], "expect_no_answer": false}
+{"id": "q003", "question": "How do I reset MFA for a locked employee account?", "category": "simple_lookup", "relevant_sources": ["mfa-policy.md"], "expect_no_answer": false}
+{"id": "q004", "question": "What is the rate limit for the standard API plan?", "category": "simple_lookup", "relevant_sources": ["authentication.md"], "expect_no_answer": false}
+{"id": "q005", "question": "How long is the billing grace period after a failed payment?", "category": "simple_lookup", "relevant_sources": ["billing-faq.md"], "expect_no_answer": false}
+{"id": "q006", "question": "What NameID format should we use for SSO?", "category": "simple_lookup", "relevant_sources": ["sso-setup.md", "auth-errors.md"], "expect_no_answer": false}
+{"id": "q007", "question": "How should support handle AUTH-4291 after the April 2026 release?", "category": "outdated_trap", "relevant_sources": ["2026-04-release.md", "auth-errors.md"], "expect_no_answer": false, "notes": "Prefer clear-lockout over full reset from older notes"}
+{"id": "q008", "question": "When I rotate an API token, how long does the old token stay valid?", "category": "outdated_trap", "relevant_sources": ["2026-04-release.md", "authentication.md"], "expect_no_answer": false, "notes": "1-hour overlap; Dec notes say immediate invalidation"}
+{"id": "q009", "question": "A user hit AUTH-4291 and still has a working authenticator. What should an admin do?", "category": "multi_doc", "relevant_sources": ["2026-04-release.md", "auth-errors.md", "mfa-policy.md"], "expect_no_answer": false}
+{"id": "q010", "question": "What default role does JIT SSO provisioning assign, and is VPN included for new hires?", "category": "multi_doc", "relevant_sources": ["sso-setup.md", "new-hire-access.md"], "expect_no_answer": false}
+{"id": "q011", "question": "How do I create a ticket via API and what statuses are valid?", "category": "multi_doc", "relevant_sources": ["tickets-api.md"], "expect_no_answer": false}
+{"id": "q012", "question": "What retention periods apply to support chat logs and security audit logs?", "category": "multi_doc", "relevant_sources": ["data-retention.md"], "expect_no_answer": false}
+{"id": "q013", "question": "What is the first-response SLA for an urgent ticket?", "category": "simple_lookup", "relevant_sources": ["support-sla.md"], "expect_no_answer": false}
+{"id": "q014", "question": "How do I resolve SYNC-2201 connector timeouts?", "category": "simple_lookup", "relevant_sources": ["sync-failures.md"], "expect_no_answer": false}
+{"id": "q015", "question": "Can support agents email MFA backup codes to users?", "category": "simple_lookup", "relevant_sources": ["mfa-policy.md"], "expect_no_answer": false}
+{"id": "q016", "question": "What happens if a user is in SSO-only mode and tries the password reset form?", "category": "simple_lookup", "relevant_sources": ["password-reset.md"], "expect_no_answer": false}
+{"id": "q017", "question": "What is our pet-friendly vacation policy for bringing dogs to the office?", "category": "no_answer", "relevant_sources": [], "expect_no_answer": true}
+{"id": "q018", "question": "How do I configure payroll tax forms in the product?", "category": "no_answer", "relevant_sources": [], "expect_no_answer": true}
+{"id": "q019", "question": "What should I do about login problems?", "category": "ambiguous", "relevant_sources": ["auth-errors.md", "password-reset.md", "sso-setup.md", "mfa-policy.md"], "expect_no_answer": false, "notes": "Ambiguous; partial guidance acceptable"}
+{"id": "q020", "question": "Error BILL-4020 appeared for a customer. What does it mean?", "category": "simple_lookup", "relevant_sources": ["billing-faq.md"], "expect_no_answer": false}
+{"id": "q021", "question": "What does AUTH-4010 mean?", "category": "simple_lookup", "relevant_sources": ["auth-errors.md"], "expect_no_answer": false}
+{"id": "q022", "question": "What does AUTH-4400 mean and what should I check?", "category": "simple_lookup", "relevant_sources": ["auth-errors.md", "sso-setup.md"], "expect_no_answer": false}
+{"id": "q023", "question": "How long do temporary passwords last?", "category": "simple_lookup", "relevant_sources": ["password-reset.md"], "expect_no_answer": false}
+{"id": "q024", "question": "What payment methods are accepted?", "category": "simple_lookup", "relevant_sources": ["billing-faq.md"], "expect_no_answer": false}
+{"id": "q025", "question": "When are monthly invoices generated?", "category": "simple_lookup", "relevant_sources": ["billing-faq.md"], "expect_no_answer": false}
+{"id": "q026", "question": "What is the enterprise API rate limit?", "category": "simple_lookup", "relevant_sources": ["authentication.md"], "expect_no_answer": false}
+{"id": "q027", "question": "How do I authenticate API requests?", "category": "simple_lookup", "relevant_sources": ["authentication.md"], "expect_no_answer": false}
+{"id": "q028", "question": "What providers are supported for SSO?", "category": "simple_lookup", "relevant_sources": ["sso-setup.md"], "expect_no_answer": false}
+{"id": "q029", "question": "Is JIT provisioning enabled by default for SSO?", "category": "simple_lookup", "relevant_sources": ["sso-setup.md"], "expect_no_answer": false}
+{"id": "q030", "question": "How often does new-hire account provisioning run?", "category": "simple_lookup", "relevant_sources": ["new-hire-access.md"], "expect_no_answer": false}
+{"id": "q031", "question": "How long do customer data exports remain available?", "category": "simple_lookup", "relevant_sources": ["data-retention.md"], "expect_no_answer": false}
+{"id": "q032", "question": "What is the resolution target for a high-priority ticket?", "category": "simple_lookup", "relevant_sources": ["support-sla.md"], "expect_no_answer": false}
+{"id": "q033", "question": "What are support business hours?", "category": "simple_lookup", "relevant_sources": ["support-sla.md"], "expect_no_answer": false}
+{"id": "q034", "question": "How do I fix SYNC-2207 schema mismatch errors?", "category": "simple_lookup", "relevant_sources": ["sync-failures.md"], "expect_no_answer": false}
+{"id": "q035", "question": "What does HOOK-5001 mean?", "category": "simple_lookup", "relevant_sources": ["webhook-errors.md"], "expect_no_answer": false}
+{"id": "q036", "question": "What does HOOK-5008 mean?", "category": "simple_lookup", "relevant_sources": ["webhook-errors.md"], "expect_no_answer": false}
+{"id": "q037", "question": "How many times are failed webhooks retried?", "category": "simple_lookup", "relevant_sources": ["webhook-errors.md"], "expect_no_answer": false}
+{"id": "q038", "question": "How do I register a webhook endpoint?", "category": "simple_lookup", "relevant_sources": ["webhooks-api.md"], "expect_no_answer": false}
+{"id": "q039", "question": "How do I replay a dead webhook event?", "category": "simple_lookup", "relevant_sources": ["webhooks-api.md", "webhook-errors.md"], "expect_no_answer": false}
+{"id": "q040", "question": "Which role is required for MFA reset actions?", "category": "simple_lookup", "relevant_sources": ["admin-roles.md", "mfa-policy.md"], "expect_no_answer": false}
+{"id": "q041", "question": "What capabilities does the team_lead role have?", "category": "simple_lookup", "relevant_sources": ["admin-roles.md"], "expect_no_answer": false}
+{"id": "q042", "question": "How quickly is product access revoked after employee termination?", "category": "simple_lookup", "relevant_sources": ["account-deactivation.md"], "expect_no_answer": false}
+{"id": "q043", "question": "How long can managers request a data handoff after deactivation?", "category": "simple_lookup", "relevant_sources": ["account-deactivation.md"], "expect_no_answer": false}
+{"id": "q044", "question": "What email address sends security notifications?", "category": "simple_lookup", "relevant_sources": ["notifications.md"], "expect_no_answer": false}
+{"id": "q045", "question": "Do quiet hours suppress urgent ticket notifications?", "category": "simple_lookup", "relevant_sources": ["notifications.md"], "expect_no_answer": false}
+{"id": "q046", "question": "A webhook failed with HOOK-5008 after a secret rotation. What should I check?", "category": "multi_doc", "relevant_sources": ["webhook-errors.md", "webhooks-api.md"], "expect_no_answer": false}
+{"id": "q047", "question": "A customer account was suspended after non-payment. What policy applies?", "category": "multi_doc", "relevant_sources": ["account-deactivation.md", "billing-faq.md"], "expect_no_answer": false}
+{"id": "q048", "question": "What tools are included by default for new hires, and which role do they get?", "category": "multi_doc", "relevant_sources": ["new-hire-access.md"], "expect_no_answer": false}
+{"id": "q049", "question": "Are password reset SMS codes still supported?", "category": "outdated_trap", "relevant_sources": ["2026-04-release.md", "password-reset.md"], "expect_no_answer": false, "notes": "SMS codes removed in April 2026; email links remain"}
+{"id": "q050", "question": "What is the company holiday gift card policy?", "category": "no_answer", "relevant_sources": [], "expect_no_answer": true}
+{"id": "q051", "question": "How do I set up hardware YubiKey shipping for executives?", "category": "no_answer", "relevant_sources": [], "expect_no_answer": true}
+{"id": "q052", "question": "A customer says notifications are broken", "category": "ambiguous", "relevant_sources": ["notifications.md"], "expect_no_answer": false, "notes": "Ambiguous; email vs Slack vs quiet hours"}
+{"id": "q053", "question": "What priority values are accepted when creating a ticket via API?", "category": "simple_lookup", "relevant_sources": ["tickets-api.md"], "expect_no_answer": false}
+{"id": "q054", "question": "What scope is required to reopen a closed ticket?", "category": "simple_lookup", "relevant_sources": ["tickets-api.md"], "expect_no_answer": false}
+{"id": "q055", "question": "Do contractors on vendor-lite have authenticator-app MFA?", "category": "simple_lookup", "relevant_sources": ["mfa-policy.md"], "expect_no_answer": false}
