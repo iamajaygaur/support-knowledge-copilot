@@ -293,19 +293,20 @@ h1, h2, h3, h4, h5, h6, p, span, div {
   margin: 0;
   color: var(--ink);
   font-family: var(--font) !important;
-  font-size: 1.05rem;
+  font-size: 1.22rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .skc-side-brand-tag {
-  margin: 0.15rem 0 0;
+  margin: 0.28rem 0 0;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  opacity: 0.85;
 }
 
 div[data-testid="stMetric"] {
