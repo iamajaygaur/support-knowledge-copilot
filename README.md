@@ -157,22 +157,17 @@ streamlit_app.py              Streamlit UI
 
 ## Deploying on Vercel (API only)
 
-Vercel deploys the FastAPI app at `src.knowledge_copilot.api.main:app` (configured in `pyproject.toml`).
+Vercel deploys the FastAPI app from root **`app.py`** (which imports `knowledge_copilot.api.main:app`).
 
-1. Push to GitHub and import the repo in Vercel
+1. Push to GitHub and import the repo in Vercel (or Redeploy after the latest push)
 2. Set environment variable **`GOOGLE_API_KEY`** in Vercel → Settings → Environment Variables
-3. Redeploy
+3. Open these URLs after deploy succeeds:
+   - `/` — API info
+   - `/health` — health check
+   - `/docs` — interactive Swagger UI
+   - `POST /ask` — ask questions
 
-After deploy, test:
-
-```bash
-curl https://YOUR-DEPLOYMENT.vercel.app/health
-curl -s https://YOUR-DEPLOYMENT.vercel.app/ask \
-  -H 'Content-Type: application/json' \
-  -d '{"question":"What does AUTH-4291 mean?","strategy":"hybrid","use_rerank":false}'
-```
-
-**Limits:** embedded Qdrant + BM25 indexes live on the local disk and are not ideal for serverless. For a reliable cloud demo, keep Streamlit + indexes local, or point `QDRANT_PATH=` empty and use a hosted Qdrant URL. The Streamlit UI (`streamlit_app.py`) is for local demos, not Vercel.
+If you still see a generic Vercel **404: NOT_FOUND**, the deploy likely used an old commit — trigger **Redeploy** from the latest `main` (`c6055d9` or newer).
 ## Interview talking points
 
 1. **Shared chunk IDs** — dense and sparse indexes address different failure modes but must point at the same evidence unit for fusion and citation checks.
