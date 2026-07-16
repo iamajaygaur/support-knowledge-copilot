@@ -42,7 +42,7 @@ EXAMPLE_QUESTIONS = [
 
 APP_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&display=swap');
 
 :root {
   --ink: #14212b;
@@ -55,10 +55,16 @@ APP_CSS = """
   --warn: #b45309;
   --danger: #b91c1c;
   --ok: #047857;
+  --font: "Figtree", "Segoe UI", sans-serif;
 }
 
-html, body, [class*="css"] {
-  font-family: "Figtree", sans-serif;
+html, body, .stApp, [class*="css"],
+.stMarkdown, .stText, .stCaption, label, button, input, textarea, select,
+[data-testid="stSidebar"], [data-testid="stSidebar"] *,
+[data-testid="stMetric"], [data-testid="stMetric"] *,
+[data-baseweb="select"], [data-baseweb="tab"],
+h1, h2, h3, h4, h5, h6, p, span, div {
+  font-family: var(--font) !important;
 }
 
 .stApp {
@@ -80,7 +86,6 @@ html, body, [class*="css"] {
 [data-testid="stSidebar"] h1,
 [data-testid="stSidebar"] h2,
 [data-testid="stSidebar"] h3 {
-  font-family: "Figtree", sans-serif !important;
   letter-spacing: -0.02em;
 }
 
@@ -126,10 +131,10 @@ html, body, [class*="css"] {
   display: grid;
   place-items: center;
   color: white;
-  font-family: "Source Serif 4", serif;
+  font-family: var(--font) !important;
   font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.04em;
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
   background: linear-gradient(145deg, #0f766e 0%, #155e75 55%, #1d4e89 100%);
   box-shadow: 0 10px 22px rgba(15, 118, 110, 0.28);
   flex: 0 0 auto;
@@ -147,7 +152,7 @@ html, body, [class*="css"] {
 .skc-title {
   margin: 0.15rem 0 0.2rem;
   color: var(--ink);
-  font-family: "Source Serif 4", serif;
+  font-family: var(--font) !important;
   font-size: clamp(1.55rem, 2.4vw, 2.05rem);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -287,7 +292,7 @@ html, body, [class*="css"] {
 .skc-side-brand-name {
   margin: 0;
   color: var(--ink);
-  font-family: "Source Serif 4", serif;
+  font-family: var(--font) !important;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -310,6 +315,10 @@ div[data-testid="stMetric"] {
   padding: 0.65rem 0.8rem;
 }
 
+.stButton > button {
+  font-family: var(--font) !important;
+}
+
 .stButton > button[kind="primary"] {
   background: linear-gradient(135deg, #0f766e, #155e75) !important;
   border: none !important;
@@ -325,6 +334,7 @@ div[data-testid="stMetric"] {
   background: rgba(255,255,255,0.7);
   border: 1px solid var(--line);
   padding: 0.35rem 0.9rem;
+  font-family: var(--font) !important;
 }
 
 .stTabs [aria-selected="true"] {
@@ -356,12 +366,14 @@ div[data-testid="stMetric"] {
 }
 
 div[data-testid="stTextInput"] label p {
+  font-family: var(--font) !important;
   font-weight: 700 !important;
   color: var(--ink) !important;
   font-size: 1.02rem !important;
 }
 
 div[data-testid="stTextInput"] input {
+  font-family: var(--font) !important;
   border: 1.5px solid var(--line) !important;
   border-radius: 14px !important;
   background: #fff !important;
@@ -378,6 +390,7 @@ div[data-testid="stTextInput"] input:focus {
 
 div[data-testid="stTextInput"] input::placeholder {
   color: #8a9aa5 !important;
+  font-family: var(--font) !important;
 }
 </style>
 """
